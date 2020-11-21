@@ -23,7 +23,7 @@ app.get("/notes", (req, res) => {
 })
 
 // API Routes
-const notes = require("db/notes.js")
+const notes = require("./db/notes.js")
 
 app.get("/api/notes", (req, res) => {
     res.json(notes)
