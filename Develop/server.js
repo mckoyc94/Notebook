@@ -24,9 +24,9 @@ app.get("/notes", (req, res) => {
 
 // API Routes
 app.get("/api/notes", (req, res) => {
-    fs.readFile("./db/db.json", (err, note) => {
+    fs.readFile("./db/db.json", (err, data) => {
         if (err) throw err;
-        console.log(note)
+        return res.json(JSON.parse(data))
     })
 })
 
