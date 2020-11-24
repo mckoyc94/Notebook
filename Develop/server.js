@@ -24,6 +24,8 @@ app.get("/notes", (req, res) => {
 })
 
 // API Routes
+
+// Retrieves and Displays Notes from DB
 app.get("/api/notes", (req, res) => {
     fs.readFile("./db/db.json", (err, data) => {
         if (err) throw err;
@@ -31,6 +33,30 @@ app.get("/api/notes", (req, res) => {
     })
 })
 
+// Allows user to add new notes to DB
+// app.post("/api/notes", (req, res) => {
+//     let newNote = req.body;
+
+//     fs.appendFileSync("./db/db.json", newNote)
+
+//     return res.json(newNote)
+// })
+
+// Deletes notes
+app.delete("/api/notes/:id", (req, res) => {
+    let oldNote = req.params.id 
+    console.log(res)
+    let notes = fs.readFileSync("./db/db.json", (err, data) => {
+        if (err) throw err;
+        let json = JSON.parse(data);
+        console.log(data)
+        return data
+    })
+    console.log(notes)
+    
+
+
+})
 //Starts Server
 app.listen(PORT, () => {
     console.log("Listening on PORT " + PORT)
