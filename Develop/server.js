@@ -23,10 +23,11 @@ app.get("/notes", (req, res) => {
 })
 
 // API Routes
-const notes = require("./db/notes.js")
-
 app.get("/api/notes", (req, res) => {
-    res.json(notes)
+    fs.readFile("./db/db.json", (err, note) => {
+        if (err) throw err;
+        console.log(note)
+    })
 })
 
 //Starts Server
