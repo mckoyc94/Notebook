@@ -34,13 +34,17 @@ app.get("/api/notes", (req, res) => {
 })
 
 // Allows user to add new notes to DB
-// app.post("/api/notes", (req, res) => {
-//     let newNote = req.body;
+app.post("/api/notes", (req, res) => {
+    let newNote = req.body;
+    let notes = JSON.parse(fs.readFileSync("./db/db.json"))
 
-//     fs.appendFileSync("./db/db.json", newNote)
+    newNote.id = notes.length + 1
+    notes.splice(notes.length, 0, newNote)
 
-//     return res.json(newNote)
-// })
+    fs.writeFileSync("./db/db.json", JSON.stringify(notes))
+    res.json(notes)
+    
+})
 
 // Deletes notes
 app.delete("/api/notes/:id", (req, res) => {
