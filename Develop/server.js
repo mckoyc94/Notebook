@@ -46,10 +46,20 @@ app.get("/api/notes", (req, res) => {
 app.delete("/api/notes/:id", (req, res) => {
     let oldNote = req.params.id 
     let notes = JSON.parse(fs.readFileSync("./db/db.json"))
-    
-    notes = notes.filter(currentNote => {
-        
+    let newNoteArr = notes.filter(currentNote => {
+        return currentNote.id != oldNote
     })
+    let newId = 0
+
+    newNoteArr.map(note => {
+        newId++
+        note.id = newId
+    })
+    console.log(notes)
+    console.log(newNoteArr)
+
+    fs.writeFileSync("./db/db.json", JSON.stringify(newNoteArr))
+    res.json(newNoteArr)
 
 })
 //Starts Server
