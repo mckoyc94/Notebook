@@ -45,16 +45,11 @@ app.get("/api/notes", (req, res) => {
 // Deletes notes
 app.delete("/api/notes/:id", (req, res) => {
     let oldNote = req.params.id 
-    console.log(res)
-    let notes = fs.readFileSync("./db/db.json", (err, data) => {
-        if (err) throw err;
-        let json = JSON.parse(data);
-        console.log(data)
-        return data
-    })
-    console.log(notes)
+    let notes = JSON.parse(fs.readFileSync("./db/db.json"))
     
-
+    notes = notes.filter(currentNote => {
+        
+    })
 
 })
 //Starts Server
